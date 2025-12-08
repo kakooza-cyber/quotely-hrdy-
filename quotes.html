@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes Collection | Quotely-hardy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-quote-left"></i>
+                <h1>Quotely-hardy</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="proverbs.html" class="nav-link">
+                    <i class="fas fa-globe"></i> Proverbs
+                </a>
+                <a href="quotes.html" class="nav-link active">
+                    <i class="fas fa-quote-right"></i> Quotes
+                </a>
+                <a href="about.html" class="nav-link">
+                    <i class="fas fa-info-circle"></i> About
+                </a>
+                <div class="user-menu">
+                    <img src="https://ui-avatars.com/api/?name=User&background=4A90E2&color=fff" 
+                         alt="User" class="user-avatar" id="userAvatar">
+                    <div class="dropdown">
+                        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                        <a href="favorites.html"><i class="fas fa-heart"></i> Favorites</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-quote-right"></i> Quotes Collection</h1>
+            <p class="page-subtitle">Discover inspiring quotes from thinkers, leaders, and creatives</p>
+        </div>
+
+        <div class="quotes-controls">
+            <div class="search-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="quoteSearch" placeholder="Search quotes or authors...">
+                </div>
+                <button class="btn btn-primary" id="searchQuotesBtn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+
+            <div class="filter-controls-grid">
+                <div class="filter-group">
+                    <label for="quoteCategory"><i class="fas fa-filter"></i> Category</label>
+                    <select id="quoteCategory" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="motivation">Motivation</option>
+                        <option value="inspiration">Inspiration</option>
+                        <option value="life">Life</option>
+                        <option value="success">Success</option>
+                        <option value="love">Love</option>
+                        <option value="wisdom">Wisdom</option>
+                        <option value="business">Business</option>
+                        <option value="technology">Technology</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="quoteAuthor"><i class="fas fa-user"></i> Author</label>
+                    <select id="quoteAuthor" class="filter-select">
+                        <option value="">All Authors</option>
+                        <option value="steve-jobs">Steve Jobs</option>
+                        <option value="albert-einstein">Albert Einstein</option>
+                        <option value="maya-angelou">Maya Angelou</option>
+                        <option value="martin-luther-king">Martin Luther King Jr.</option>
+                        <option value="nelson-mandela">Nelson Mandela</option>
+                        <option value="oprah-winfrey">Oprah Winfrey</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="quoteSort"><i class="fas fa-sort"></i> Sort By</label>
+                    <select id="quoteSort" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="likes">Most Likes</option>
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-secondary" id="clearQuoteFilters">
+                    <i class="fas fa-times"></i> Clear All
+                </button>
+            </div>
+        </div>
+
+        <div class="view-options">
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <i class="fas fa-th-large"></i> Grid
+                </button>
+                <button class="view-btn" data-view="list">
+                    <i class="fas fa-list"></i> List
+                </button>
+                <button class="view-btn" data-view="minimal">
+                    <i class="fas fa-align-left"></i> Minimal
+                </button>
+            </div>
+            <div class="results-info">
+                Showing <span id="resultsCount">0</span> quotes
+            </div>
+        </div>
+
+        <div class="quotes-grid" id="quotesGrid">
+            <!-- Quotes will be loaded here -->
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading quotes...</p>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="btn btn-secondary" id="prevQuotesPage" disabled>
+                <i class="fas fa-chevron-left"></i> Previous
+            </button>
+            <div class="page-numbers" id="pageNumbers">
+                <!-- Page numbers will be generated here -->
+            </div>
+            <button class="btn btn-secondary" id="nextQuotesPage">
+                Next <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="submit-quote-section">
+            <div class="section-header">
+                <h3><i class="fas fa-pen"></i> Submit Your Quote</h3>
+                <p>Share your favorite quote with our community</p>
+            </div>
+            <form id="submitQuoteForm" class="quote-submission-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quoteText">Quote Text *</label>
+                        <textarea id="quoteText" name="quoteText" rows="3" 
+                                  placeholder="Enter the quote text..." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quoteAuthor">Author *</label>
+                        <input type="text" id="quoteAuthor" name="quoteAuthor" 
+                               placeholder="Enter author name..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteCategorySelect">Category *</label>
+                        <select id="quoteCategorySelect" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="motivation">Motivation</option>
+                            <option value="inspiration">Inspiration</option>
+                            <option value="life">Life</option>
+                            <option value="success">Success</option>
+                            <option value="love">Love</option>
+                            <option value="wisdom">Wisdom</option>
+                            <option value="business">Business</option>
+                            <option value="technology">Technology</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quoteSource">Source (Optional)</label>
+                        <input type="text" id="quoteSource" name="source" 
+                               placeholder="Book, speech, interview, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteTags">Tags (Optional)</label>
+                        <input type="text" id="quoteTags" name="tags" 
+                               placeholder="Separate tags with commas">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Quote
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="popular-authors">
+            <div class="section-header">
+                <h3><i class="fas fa-crown"></i> Popular Authors</h3>
+            </div>
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Steve Jobs</h4>
+                    <p>45 quotes</p>
+                    <button class="btn btn-outline view-author" data-author="steve-jobs">
+                        View Quotes
+                    </button>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>Albert Einstein</h4>
+                    <p>38 quotes</p>
+                    <button class="btn btn-outline view-author" data-author="albert-einstein">
+                        View Quotes
+                    </button>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h4>Maya Angelou</h4>
+                    <p>32 quotes</p>
+                    <button class="btn btn-outline view-author" data-author="maya-angelou">
+                        View Quotes
+                    </button>
+                </div>
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Martin Luther King Jr.</h4>
+                    <p>28 quotes</p>
+                    <button class="btn btn-outline view-author" data-author="martin-luther-king">
+                        View Quotes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quotely-hardy</h4>
+                <p>Inspire, Motivate, and Reflect with Quotely</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="dashboard.html">Home</a>
+                <a href="proverbs.html">Proverbs</a>
+                <a href="quotes.html">Quotes</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Quotely-hardy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/supabase-client.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+                  </html>
