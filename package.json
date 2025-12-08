@@ -1,0 +1,16 @@
+{
+  "name": "quotely-hardy",
+  "version": "1.0.0",
+  "description": "Inspire, Motivate, and Reflect with Quotely",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server . --port=3000",
+    "deploy": "echo 'Deploy to Netlify via git push'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
