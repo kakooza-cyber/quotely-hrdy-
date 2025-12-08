@@ -31,15 +31,20 @@
                 <a href="about.html" class="nav-link">
                     <i class="fas fa-info-circle"></i> About
                 </a>
-                <div class="user-menu">
-                    <img src="https://ui-avatars.com/api/?name=User&background=4A90E2&color=fff" 
-                         alt="User" class="user-avatar">
-                    <div class="dropdown">
-                        <a href="#"><i class="fas fa-user"></i> Profile</a>
-                        <a href="#"><i class="fas fa-heart"></i> Favorites</a>
-                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
-                </div>
+                <!-- the user menu section -->
+<div class="user-menu">
+    <div class="user-info">
+        <img src="https://ui-avatars.com/api/?name=User&background=4A90E2&color=fff" 
+             alt="User" class="user-avatar" id="userAvatar">
+        <span class="user-name" id="userName">Loading...</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="dropdown">
+        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="favorites.html"><i class="fas fa-heart"></i> Favorites</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
             </div>
             <button class="nav-toggle">
                 <i class="fas fa-bars"></i>
