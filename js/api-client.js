@@ -2,7 +2,7 @@
 class ApiClient {
     constructor() {
         // Use your Render/Railway backend URL
-        this.baseUrl = 'https://your-backend.onrender.com';
+        this.baseUrl = 'https://quotely-hrdy-api.onrender.com';
         // For local development: 'http://localhost:3001'
     }
 
