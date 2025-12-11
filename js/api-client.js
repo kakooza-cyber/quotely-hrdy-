@@ -1,7 +1,7 @@
 // API Client for communicating with Quotely-Hardy backend
 class ApiClient {
     constructor() {
-        this.baseUrl = 'http://localhost:3000/api';
+        this.baseUrl = 'https://quotely-hrdy-api.onrender.com/';
         this.token = localStorage.getItem('authToken');
     }
 
