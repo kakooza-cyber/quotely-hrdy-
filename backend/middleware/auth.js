@@ -18,7 +18,7 @@ export const authenticateToken = async (req, res, next) => {
     
     // Check if user exists in database
     const { data: user, error } = await supabase
-      .from('users')
+      .from('user_profiles')
       .select('id, email, name, role, status')
       .eq('id', decoded.userId)
       .single();
